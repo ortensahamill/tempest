@@ -151,7 +151,7 @@ func (client *Client) ListenAndServe(route string, address string) error {
 	}
 
 	client.state.Store(uint32(RUNNING_STATE))
-	client.httpServeMux.HandleFunc(route, client.handleRequest)
+	client.httpServeMux.HandleFunc(route, client.HandleRequest)
 	client.httpServer.(*http.Server).Addr = address
 	client.httpServer.(*http.Server).Handler = client.httpServeMux
 
@@ -172,7 +172,7 @@ func (client *Client) ListenAndServeTLS(route string, address string, certFile, 
 	}
 
 	client.state.Store(uint32(RUNNING_STATE))
-	client.httpServeMux.HandleFunc(route, client.handleRequest)
+	client.httpServeMux.HandleFunc(route, client.HandleRequest)
 	client.httpServer.(*http.Server).Addr = address
 	client.httpServer.(*http.Server).Handler = client.httpServeMux
 
@@ -190,7 +190,7 @@ func (client *Client) Hijack() (func(w http.ResponseWriter, r *http.Request), er
 	}
 
 	client.state.Store(uint32(RUNNING_STATE))
-	return client.handleRequest, nil
+	return client.HandleRequest, nil
 }
 
 // Tries to gracefully shutdown client. It'll clear all queued actions and shutdown underlying http server.
