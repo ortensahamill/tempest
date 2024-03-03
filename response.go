@@ -28,7 +28,7 @@ type ResponseMessageData struct {
 	Embeds          []*Embed         `json:"embeds,omitempty"`
 	AllowedMentions *AllowedMentions `json:"allowed_mentions,omitempty"`
 	Flags           uint64           `json:"flags,omitempty"`
-	Components      []*ComponentRow  `json:"components,omitempty"`
+	Components      []*ComponentRow  `json:"components"`
 }
 
 // https://discord.com/developers/docs/interactions/receiving-and-responding#interaction-response-object
